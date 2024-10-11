@@ -1,25 +1,25 @@
 import "./App.css";
-import DessertsList from "./DessertsList";
+import GameList from "./GameList";
 
-const desserts = [
+const games = [
   {
-    name: "Chocolate Cake",
-    calories: 400,
+    name: "Throne & Liberty",
+    price: 0,
     createdAt: "2022-09-01",
   },
   {
-    name: "Ice Cream",
-    calories: 200,
+    name: "Cyberpunk",
+    price: 60,
     createdAt: "2022-01-02",
   },
   {
-    name: "Tiramisu",
-    calories: 300,
+    name: "World of Warcraft",
+    price: 300,
     createdAt: "2021-10-03",
   },
   {
-    name: "Cheesecake",
-    calories: 600,
+    name: "Lineage 2",
+    price: 69,
     createdAt: "2022-01-04",
   },
 ];
@@ -27,8 +27,8 @@ const desserts = [
 function App() {
   return (
     <div className="App">
-      <h2>List of low calorie desserts:</h2>
-      <DessertsList data={desserts} />
+      <h2>List of games:</h2>
+      <GameList data={games} />
     </div>
   );
 }
