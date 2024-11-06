@@ -20,9 +20,9 @@ function App() {
 
   const getIsFormValid = () => {
     if (firstName && 
-      //validateEmail(email) && 
+      email && 
       password.value.length >= 8 && 
-      role !== "role");
+      role !== "role")
     return true;
   };
 
@@ -39,8 +39,8 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Account created!");
     clearForm();
+    alert("Account created!");
   };
 
   return (
