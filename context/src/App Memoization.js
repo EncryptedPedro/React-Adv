@@ -2,6 +2,35 @@ import "./App.css";
 import { ThemeProvider, useTheme } from "./ThemeContext";
 import Switch from "./Switch";
 
+/*
+Memoization -> skip re-rendering irrelevant components (components that don't need to be updated at the time)
+
+EXAMPLE
+
+const App = () => {
+  const a = 'hi';
+  const b = 'bye';
+  const value = useMemo(() => ({a, b}), [a, b]);
+
+  return (
+    <AppContext.Provider value={value}>
+      <ComponentA />
+    </AppContext.Provider>
+  );
+};
+
+const ComponentA = React.memo(() => <ComponentB />);
+const ComponentB = () => <ComponentC />;
+const ComponentC = () => {
+  const contextValue = useContext(AppContext);
+  return null;
+};
+
+if a and b remain the same, then only App (ContextProvider) gets re-rendered instead of all components
+
+
+*/
+
 const Title = ({ children }) => {
   const { theme } = useTheme();
   return (
