@@ -97,11 +97,11 @@ const Header = () => {
           alignItems="center"
         >
           <nav>
-            <HStack>
+            <HStack spacing={4}>
               {socials.map((link, index) => (
                 <Link key={index} href={link.url} isExternal>
-                  <Box fontSize={"2x1"}>
-                    <FontAwesomeIcon icon={link.icon} />
+                  <Box>
+                    <FontAwesomeIcon icon={link.icon} size="lg"/>
                   </Box>
                 </Link>
               ))}
