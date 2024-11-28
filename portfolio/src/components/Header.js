@@ -110,12 +110,12 @@ const Header = () => {
           <nav>
             <HStack spacing={8}>
               <Link key="Contact Me" onClick={handleClick("contactme")}>
-                <Box fontSize={"4x1"}>
+                <Box fontSize={"lg"}>
                   Contact Me
                 </Box>
               </Link>
               <Link key="Projects" onClick={handleClick("projects")}>
-                <Box fontSize={"4x1"}>
+                <Box fontSize={"lg"}>
                   Projects
                 </Box>
               </Link>
