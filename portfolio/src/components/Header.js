@@ -7,7 +7,7 @@ import {
   faMedium,
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, HStack, Link } from "@chakra-ui/react";
 
 const socials = [
   {
@@ -33,6 +33,37 @@ const socials = [
 ];
 
 const Header = () => {
+  const headerRef = useRef(null); // Reference to the header element
+  const lastScrollY = useRef(0); // Track the last scroll position
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (headerRef.current) {
+        if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+          // Scrolling down, hide the header
+          headerRef.current.style.transform = "translateY(-100%)";
+        } else {
+          // Scrolling up, show the header
+          headerRef.current.style.transform = "translateY(0)";
+        }
+      }
+
+      // Update lastScrollY to the current position
+      lastScrollY.current = currentScrollY;
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Empty dependency array ensures this runs once
+
+
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
@@ -46,6 +77,8 @@ const Header = () => {
 
   return (
     <Box
+      ref={headerRef}
+      as="header"
       position="fixed"
       top={0}
       left={0}
@@ -64,11 +97,28 @@ const Header = () => {
           alignItems="center"
         >
           <nav>
-            {/* Add social media links based on the `socials` data */}
+            <HStack>
+              {socials.map((link, index) => (
+                <Link key={index} href={link.url} isExternal>
+                  <Box fontSize={"2x1"}>
+                    <FontAwesomeIcon icon={link.icon} />
+                  </Box>
+                </Link>
+              ))}
+            </HStack>
           </nav>
           <nav>
             <HStack spacing={8}>
-              {/* Add links to Projects and Contact me section */}
+              <Link key="Contact Me" onClick={handleClick("contactme")}>
+                <Box fontSize={"4x1"}>
+                  Contact Me
+                </Box>
+              </Link>
+              <Link key="Projects" onClick={handleClick("projects")}>
+                <Box fontSize={"4x1"}>
+                  Projects
+                </Box>
+              </Link>
             </HStack>
           </nav>
         </HStack>
